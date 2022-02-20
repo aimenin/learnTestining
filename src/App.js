@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -13,6 +12,28 @@ function App() {
             type="email"
             id="email"
             name="email"
+            className="form-control"
+          ></input>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            className="form-control"
+          ></input>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="confirm password" className="form-label">
+            Confirm password
+          </label>
+          <input
+            type="password"
+            id="confirm password"
+            name="confirm password"
             className="form-control"
           ></input>
         </div>
