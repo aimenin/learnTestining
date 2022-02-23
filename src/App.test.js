@@ -34,3 +34,22 @@ test('should be able to type a conform password', () => {
   userEvent.type(confirmPasswordElement, '12345');
   expect(confirmPasswordElement.value).toBe('12345');
 });
+
+test('should show email error message on  invalid email', () => {
+  render(<App />);
+
+  const emailErrorElement = screen.queryByText(
+    /the email you input is invalid/
+  );
+  const emailInputElement = screen.getByRole('textbox', {
+    name: /email/i,
+  });
+  const submitBtnElement = screen.getByRole('button');
+
+  expect(emailErrorElement).not.toBeInTheDocument();
+
+  userEvent.type(emailInputElement, 'selenagmail.com');
+  userEvent.click(submitBtnElement);
+
+  expect(emailErrorElement).toBeInTheDocument();
+});
