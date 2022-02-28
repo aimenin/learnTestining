@@ -23,6 +23,12 @@ function App() {
     e.preventDefault();
     if (!validator.isEmail(signUpInput.email)) {
       return setError('the email you input is invalid.');
+    } else if (signUpInput.password.length < 5) {
+      return setError(
+        'The password you entered should contain 5 or more character.'
+      );
+    } else if (signUpInput.password !== signUpInput.confirmPassword) {
+      return setError(`The passwords don't match. Try again`);
     }
   };
 

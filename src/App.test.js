@@ -57,3 +57,57 @@ test('should show email error message on  invalid email', () => {
 
   expect(emailErrorElementAgain).toBeInTheDocument();
 });
+
+test('password should contains at leat 5 characters', () => {
+  render(<App />);
+
+  const passwordErrorElement = screen.queryByText(
+    /The password you entered should contain 5 or more character/
+  );
+
+  const emailInputElement = screen.getByRole('textbox', {
+    name: /email/i,
+  });
+  const passwordInputElement = screen.getByLabelText('Password');
+  const submitBtnElement = screen.getByRole('button');
+
+  expect(passwordErrorElement).not.toBeInTheDocument();
+
+  userEvent.type(emailInputElement, 'selena@gmail.com');
+  userEvent.type(passwordInputElement, '8976');
+  userEvent.click(submitBtnElement);
+
+  const passwordErrorElementAgain = screen.queryByText(
+    /The password you entered should contain 5 or more character./
+  );
+
+  expect(passwordErrorElementAgain).toBeInTheDocument();
+});
+
+test('passwords should be the same', () => {
+  render(<App />);
+
+  const passwordErrorElement = screen.queryByText(
+    /The passwords don't match. Try again/
+  );
+
+  const emailInputElement = screen.getByRole('textbox', {
+    name: /email/i,
+  });
+  const passwordInputElement = screen.getByLabelText('Password');
+  const confirmPasswordElement = screen.getByLabelText(/confirm password/i);
+  const submitBtnElement = screen.getByRole('button');
+
+  expect(passwordErrorElement).not.toBeInTheDocument();
+
+  userEvent.type(emailInputElement, 'selena@gmail.com');
+  userEvent.type(passwordInputElement, '897687');
+  userEvent.type(confirmPasswordElement, 'sdasdasdaasd');
+  userEvent.click(submitBtnElement);
+
+  const passwordErrorElementAgain = screen.queryByText(
+    /The passwords don't match. Try again/
+  );
+
+  expect(passwordErrorElementAgain).toBeInTheDocument();
+});
