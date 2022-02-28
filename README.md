@@ -5,3 +5,6 @@ There will be a manual for my colleagues about react-testing-library
 
 ### 1) Basics of testing
 Link to pull request: https://github.com/aimenin/learnTestining/pull/1
+
+### 2) User events
+Link to pull request: https://github.com/aimenin/learnTestining/pull/2
