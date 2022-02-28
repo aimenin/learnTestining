@@ -1,6 +1,37 @@
+import { useState } from 'react';
 import './App.css';
+import validator from 'validator';
 
 function App() {
+  const [signUpInput, setSignUpInput] = useState({
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    console.log();
+    setSignUpInput({
+      ...signUpInput,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!validator.isEmail(signUpInput.email)) {
+      return setError('the email you input is invalid.');
+    } else if (signUpInput.password.length < 5) {
+      return setError(
+        'The password you entered should contain 5 or more character.'
+      );
+    } else if (signUpInput.password !== signUpInput.confirmPassword) {
+      return setError(`The passwords don't match. Try again`);
+    }
+  };
+
   return (
     <div className="container my-5">
       <form>
@@ -13,6 +44,8 @@ function App() {
             id="email"
             name="email"
             className="form-control"
+            value={signUpInput.email}
+            onChange={handleChange}
           ></input>
         </div>
         <div className="mb-3">
@@ -24,6 +57,8 @@ function App() {
             id="password"
             name="password"
             className="form-control"
+            value={signUpInput.password}
+            onChange={handleChange}
           ></input>
         </div>
         <div className="mb-3">
@@ -33,10 +68,18 @@ function App() {
           <input
             type="password"
             id="confirm password"
-            name="confirm password"
+            name="confirmPassword"
             className="form-control"
+            value={signUpInput.confirmPassword}
+            onChange={handleChange}
           ></input>
         </div>
+
+        {error && <p className="text-danger">{error}</p>}
+
+        <button type="submit" className="btn btn-primary" onClick={handleClick}>
+          Submit
+        </button>
       </form>
     </div>
   );
