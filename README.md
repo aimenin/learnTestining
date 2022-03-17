@@ -8,3 +8,6 @@ Link to pull request: https://github.com/aimenin/learnTestining/pull/1
 
 ### 2) User events
 Link to pull request: https://github.com/aimenin/learnTestining/pull/2
+
+### 3) Orginizing test files
+Link to pull request: https://github.com/aimenin/learnTestining/pull/3
