@@ -42,12 +42,9 @@ const typeSubmitButton = () => {
 
 test('inputs should be initial empty', () => {
   render(<App />);
-  const emailInputElement = screen.getByRole('textbox');
-  const passwordInputElement = screen.getByLabelText('Password');
-  const confirmPasswordElement = screen.getByLabelText(/confirm password/i);
-  expect(emailInputElement.value).toBe('');
-  expect(passwordInputElement.value).toBe('');
-  expect(confirmPasswordElement.value).toBe('');
+  expect(screen.getByRole('textbox').value).toBe('');
+  expect(screen.getByLabelText('Password').value).toBe('');
+  expect(screen.getByLabelText(/confirm password/i).value).toBe('');
 });
 
 test('should be able to type an email', () => {
@@ -77,32 +74,28 @@ test('should be able to type a conform password', () => {
 test('should show email error message on  invalid email', () => {
   render(<App />);
 
-  const emailErrorElement = screen.queryByText(
-    /the email you input is invalid/
-  );
-
-  expect(emailErrorElement).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/the email you input is invalid/)
+  ).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selenagmail.com',
   });
   typeSubmitButton();
 
-  const emailErrorElementAgain = screen.queryByText(
-    /the email you input is invalid/
-  );
-
-  expect(emailErrorElementAgain).toBeInTheDocument();
+  expect(
+    screen.getByText(/the email you input is invalid/)
+  ).toBeInTheDocument();
 });
 
 test('password should contains at leat 5 characters', () => {
   render(<App />);
 
-  const passwordErrorElement = screen.queryByText(
-    /The password you entered should contain 5 or more character/
-  );
-
-  expect(passwordErrorElement).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(
+      /The password you entered should contain 5 or more character/
+    )
+  ).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selena@gmail.com',
@@ -110,21 +103,19 @@ test('password should contains at leat 5 characters', () => {
   });
   typeSubmitButton();
 
-  const passwordErrorElementAgain = screen.queryByText(
-    /The password you entered should contain 5 or more character./
-  );
-
-  expect(passwordErrorElementAgain).toBeInTheDocument();
+  expect(
+    screen.getByText(
+      /The password you entered should contain 5 or more character./
+    )
+  ).toBeInTheDocument();
 });
 
 test('passwords should be the same', () => {
   render(<App />);
 
-  const passwordErrorElement = screen.queryByText(
-    /The passwords don't match. Try again/
-  );
-
-  expect(passwordErrorElement).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/The passwords don't match. Try again/)
+  ).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selena@gmail.com',
@@ -133,29 +124,25 @@ test('passwords should be the same', () => {
   });
   typeSubmitButton();
 
-  const passwordErrorElementAgain = screen.queryByText(
-    /The passwords don't match. Try again/
-  );
-
-  expect(passwordErrorElementAgain).toBeInTheDocument();
+  expect(
+    screen.getByText(/The passwords don't match. Try again/)
+  ).toBeInTheDocument();
 });
 
 test(`if no error we shouldn't show error messages`, () => {
   render(<App />);
 
-  const passwordErrorElement = screen.queryByText(
-    /The password you entered should contain 5 or more character/
-  );
-  const emailErrorElement = screen.queryByText(
-    /the email you input is invalid/
-  );
-  const confirmPasswordErrorElement = screen.queryByText(
-    /The passwords don't match. Try again/
-  );
-
-  expect(passwordErrorElement).not.toBeInTheDocument();
-  expect(emailErrorElement).not.toBeInTheDocument();
-  expect(confirmPasswordErrorElement).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(
+      /The password you entered should contain 5 or more character/
+    )
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/the email you input is invalid/)
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/The passwords don't match. Try again/)
+  ).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selena@gmail.com',
@@ -164,17 +151,15 @@ test(`if no error we shouldn't show error messages`, () => {
   });
   typeSubmitButton();
 
-  const passwordErrorElementAgain = screen.queryByText(
-    /The password you entered should contain 5 or more character/
-  );
-  const emailErrorElementAgain = screen.queryByText(
-    /the email you input is invalid/
-  );
-  const conformPasswordErrorElementAgain = screen.queryByText(
-    /The passwords don't match. Try again/
-  );
-
-  expect(passwordErrorElementAgain).not.toBeInTheDocument();
-  expect(emailErrorElementAgain).not.toBeInTheDocument();
-  expect(conformPasswordErrorElementAgain).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(
+      /The password you entered should contain 5 or more character/
+    )
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/the email you input is invalid/)
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByText(/The passwords don't match. Try again/)
+  ).not.toBeInTheDocument();
 });
