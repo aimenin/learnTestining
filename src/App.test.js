@@ -2,6 +2,16 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
+beforeEach(() => {
+  // render(<App />);
+}); // Эта функция запустится перед каждым тестом в этом файле
+
+afterEach(() => {}); // Эта функция запустится после каждого теста в этом файле
+
+beforeAll(() => {}); // Эта функция запустится один раз перед выполнением всех тестов
+
+afterAll(() => {}); // запустится один раз после всех тестов
+
 test('inputs should be initial empty', () => {
   render(<App />);
   const emailInputElement = screen.getByRole('textbox');
