@@ -35,6 +35,11 @@ const typeIntoForm = ({ email, password, confirmPassword }) => {
   };
 };
 
+const typeSubmitButton = () => {
+  const submitBtnElement = screen.getByRole('button');
+  userEvent.click(submitBtnElement);
+};
+
 test('inputs should be initial empty', () => {
   render(<App />);
   const emailInputElement = screen.getByRole('textbox');
@@ -75,14 +80,13 @@ test('should show email error message on  invalid email', () => {
   const emailErrorElement = screen.queryByText(
     /the email you input is invalid/
   );
-  const submitBtnElement = screen.getByRole('button');
 
   expect(emailErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selenagmail.com',
   });
-  userEvent.click(submitBtnElement);
+  typeSubmitButton();
 
   const emailErrorElementAgain = screen.queryByText(
     /the email you input is invalid/
@@ -98,15 +102,13 @@ test('password should contains at leat 5 characters', () => {
     /The password you entered should contain 5 or more character/
   );
 
-  const submitBtnElement = screen.getByRole('button');
-
   expect(passwordErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({
     email: 'selena@gmail.com',
     password: '8976',
   });
-  userEvent.click(submitBtnElement);
+  typeSubmitButton();
 
   const passwordErrorElementAgain = screen.queryByText(
     /The password you entered should contain 5 or more character./
@@ -122,8 +124,6 @@ test('passwords should be the same', () => {
     /The passwords don't match. Try again/
   );
 
-  const submitBtnElement = screen.getByRole('button');
-
   expect(passwordErrorElement).not.toBeInTheDocument();
 
   typeIntoForm({
@@ -131,7 +131,7 @@ test('passwords should be the same', () => {
     password: '897687',
     confirmPassword: 'sdasdasdaasd',
   });
-  userEvent.click(submitBtnElement);
+  typeSubmitButton();
 
   const passwordErrorElementAgain = screen.queryByText(
     /The passwords don't match. Try again/
@@ -153,8 +153,6 @@ test(`if no error we shouldn't show error messages`, () => {
     /The passwords don't match. Try again/
   );
 
-  const submitBtnElement = screen.getByRole('button');
-
   expect(passwordErrorElement).not.toBeInTheDocument();
   expect(emailErrorElement).not.toBeInTheDocument();
   expect(confirmPasswordErrorElement).not.toBeInTheDocument();
@@ -164,7 +162,7 @@ test(`if no error we shouldn't show error messages`, () => {
     password: '897687',
     confirmPassword: '897687',
   });
-  userEvent.click(submitBtnElement);
+  typeSubmitButton();
 
   const passwordErrorElementAgain = screen.queryByText(
     /The password you entered should contain 5 or more character/
