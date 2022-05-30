@@ -31,4 +31,10 @@ describe('Card', () => {
     render(<Card {...cardProps} />);
     expect(screen.getByText(/test@nuimail.com/i)).toBeInTheDocument();
   });
+
+  test('should show image with correct src', () => {
+    render(<Card {...cardProps} />);
+
+    expect(screen.getByAltText(/cute cat/i).src).toBe(cardProps.image.url);
+  });
 });
