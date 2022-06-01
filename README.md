@@ -11,3 +11,6 @@ Link to pull request: https://github.com/aimenin/learnTestining/pull/2
 
 ### 3) Orginizing test files
 Link to pull request: https://github.com/aimenin/learnTestining/pull/3
+
+### 4) Testing components with props
+Link to pull request: https://github.com/aimenin/learnTestining/pull/4
