@@ -12,8 +12,8 @@ const Card = ({ name, phone, email, image, favoured }) => {
   };
 
   return (
-    <div className="card">
-      <div class="card-header">
+    <article className="card">
+      <div className="card-header">
         <img
           src={image.url}
           alt={image.alt}
@@ -34,7 +34,7 @@ const Card = ({ name, phone, email, image, favoured }) => {
         <p>{phone}</p>
         <p>{email}</p>
       </div>
-    </div>
+    </article>
   );
 };
 
