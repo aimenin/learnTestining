@@ -1,9 +1,10 @@
-import Filter from '../Filter/Filter';
-import Cards from '../Cards/Cards';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+import Filter from '../Filter/Filter';
+import Cards from '../Cards/Cards';
+
 import './Pets.css';
-import { useEffect, useState } from 'react';
 
 const Pets = () => {
   const [cats, setCats] = useState([]);
