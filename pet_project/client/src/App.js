@@ -1,6 +1,4 @@
-import Card from './components/Card/Card';
-import Cards from './components/Cards/Cards';
-import cats from './mocks/cats.json';
+import Pets from './components/Pets/Pets';
 
 const cardProps = {
   name: 'Sydney',
@@ -16,7 +14,7 @@ const cardProps = {
 function App() {
   return (
     <div>
-      <Cards cats={cats} />
+      <Pets />
     </div>
   );
 }
