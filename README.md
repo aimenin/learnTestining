@@ -14,3 +14,6 @@ Link to pull request: https://github.com/aimenin/learnTestining/pull/3
 
 ### 4) Testing components with props
 Link to pull request: https://github.com/aimenin/learnTestining/pull/4
+
+### 5) Testing multiple components
+Link to pull request: https://github.com/aimenin/learnTestining/pull/5
