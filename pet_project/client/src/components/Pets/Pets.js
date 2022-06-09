@@ -21,7 +21,7 @@ const Pets = () => {
 
   useEffect(() => {
     fetchCats();
-  });
+  }, []);
 
   useEffect(() => {
     let catsFiltered = [...cats];

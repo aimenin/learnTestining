@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 const Filter = ({ filters, setFilters }) => {
   return (
     <div className="pet-filter-container">
