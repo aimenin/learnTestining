@@ -21,5 +21,8 @@ Link to pull request: https://github.com/aimenin/learnTestining/pull/5
 ### 6) Testing http requests
 Link to pull request: https://github.com/aimenin/learnTestining/pull/6
 
-### 7)Integration testing
+### 7) Integration testing
 Link to pull request: https://github.com/aimenin/learnTestining/pull/7
+
+### 8) Testing components with provider
+Link to pull request: https://github.com/aimenin/learnTestining/pull/8
