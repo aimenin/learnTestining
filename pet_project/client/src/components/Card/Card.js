@@ -4,11 +4,20 @@ import './Card.css';
 import heart from '../../svgs/heart.svg';
 import heartFilled from '../../svgs/heartFilled.svg';
 
-const Card = ({ name, phone, email, image, favoured }) => {
+const Card = ({
+  name,
+  phone,
+  email,
+  image,
+  favoured,
+  updateFavored,
+  index,
+}) => {
   const [isFaVoured, setIsFavoured] = useState(favoured);
 
   const handleHeartClick = (event) => {
     setIsFavoured(!isFaVoured);
+    updateFavored(index, !isFaVoured);
   };
 
   return (
