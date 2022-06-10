@@ -11,6 +11,7 @@ const Pets = () => {
   const [filteredCats, setFilteredCats] = useState([]);
   const [filters, setFilters] = useState({
     gender: 'any',
+    favoured: 'any',
   });
 
   const fetchCats = async () => {
@@ -29,17 +30,21 @@ const Pets = () => {
       catsFiltered = catsFiltered.filter(
         (cat) => cat.gender === filters.gender
       );
-      setFilteredCats(catsFiltered);
-    } else {
-      setFilteredCats(cats);
     }
+    if (filters.favoured !== 'any') {
+      catsFiltered = catsFiltered.filter(
+        (cat) =>
+          cat.favoured === (filters.favoured === 'favoured' ? true : false)
+      );
+    }
+    setFilteredCats(catsFiltered);
   }, [filters]);
 
   return (
     <div className="container">
       <div className="app-container">
         <Filter filters={filters} setFilters={setFilters} />
-        <Cards cats={filteredCats} />
+        <Cards cats={filteredCats} setCats={setCats} />
       </div>
     </div>
   );
