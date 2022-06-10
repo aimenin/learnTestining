@@ -1,6 +1,9 @@
 import { render, screen } from '@testing-library/react';
+
 import userEvents from '@testing-library/user-event';
+import { PetsContext } from '../../Pets/Pets';
 import Card from '../Card';
+import cats from '../../../mocks/cats.json';
 
 const cardProps = {
   name: 'Sydney',
@@ -15,9 +18,17 @@ const cardProps = {
   index: 1,
 };
 
+const renderCardWithProvider = (props) => {
+  render(
+    <PetsContext.Provider value={{ cats, setCats: () => {} }}>
+      <Card {...props} />
+    </PetsContext.Provider>
+  );
+};
+
 describe('Card', () => {
   test('should show name of cat', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
     expect(
       screen.getByRole('heading', {
         name: /sydney/i,
@@ -26,37 +37,37 @@ describe('Card', () => {
   });
 
   test('should show the phone number', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
     expect(screen.getByText(/111-111-1111/i)).toBeInTheDocument();
   });
 
   test('should show the email', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
     expect(screen.getByText(/test@nuimail.com/i)).toBeInTheDocument();
   });
 
   test('should show image with correct src', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
 
     expect(screen.getByAltText(/cute cat/i).src).toBe(cardProps.image.url);
   });
 
   test('should show outlined heart', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
 
     expect(screen.queryByAltText(/filled heart/i)).not.toBeInTheDocument();
     expect(screen.getByAltText(/outlined heart/i)).toBeInTheDocument();
   });
 
   test('should show filled heart', () => {
-    render(<Card {...cardProps} favoured={true} />);
+    renderCardWithProvider({ ...cardProps, favoured: true });
 
     expect(screen.queryByAltText(/outlined heart/i)).not.toBeInTheDocument();
     expect(screen.getByAltText(/filled heart/i)).toBeInTheDocument();
   });
 
   test('should toggle heart styles', () => {
-    render(<Card {...cardProps} />);
+    renderCardWithProvider(cardProps);
 
     const button = screen.getByRole('button');
 
