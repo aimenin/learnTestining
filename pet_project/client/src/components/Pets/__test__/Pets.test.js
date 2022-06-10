@@ -64,4 +64,20 @@ describe('Pets', () => {
     const notFavouredCards = screen.getAllByRole('article');
     expect(notFavouredCards).toStrictEqual([cards[1], cards[2], cards[4]]); // we use toStrictEqual because we make assertion with array
   });
+
+  test('should filter for favoured male cars', async () => {
+    render(<Pets />);
+    const cards = await screen.findAllByRole('article');
+
+    const btnForFirstCard = within(cards[0]).getByRole('button'); // we use within to find an element within other element
+    const btnForFourthCard = within(cards[3]).getByRole('button'); // we use within to find an element within other element
+    userEvent.click(btnForFirstCard);
+    userEvent.click(btnForFourthCard);
+
+    userEvent.selectOptions(screen.getByLabelText(/gender/i), 'male');
+    userEvent.selectOptions(screen.getByLabelText(/favoured/i), 'favoured');
+
+    const favouredCards = screen.getAllByRole('article');
+    expect(favouredCards).toStrictEqual([cards[3]]); // we use toStrictEqual because we make assertion with array
+  });
 });
