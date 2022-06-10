@@ -20,3 +20,6 @@ Link to pull request: https://github.com/aimenin/learnTestining/pull/5
 
 ### 6) Testing http requests
 Link to pull request: https://github.com/aimenin/learnTestining/pull/6
+
+### 7)Integration testing
+Link to pull request: https://github.com/aimenin/learnTestining/pull/7
