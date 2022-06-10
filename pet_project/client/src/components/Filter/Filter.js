@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import './FIlter.css';
 
 const Filter = ({ filters, setFilters }) => {
   return (
